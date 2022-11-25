@@ -24,6 +24,9 @@ export const MainPage: React.FC = () => (
         <Typography gutterBottom>{todoItem.title}</Typography>
         <Typography>{todoItem.userId}</Typography>
         <NavLink to="/login">на страницу логина</NavLink>
+        <Typography gutterBottom>{todoItem.title}</Typography>
+        <Typography>{todoItem.userId}</Typography>
+        <NavLink to="/login">на страницу логина</NavLink>
       </Stack>
     )}
   />

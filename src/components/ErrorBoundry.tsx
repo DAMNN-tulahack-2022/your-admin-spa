@@ -29,7 +29,7 @@ export default class ErrorBoundry extends Component<Props, State> {
   }
 
   render() {
-    if (!this.state.hasError) {
+    if (this.state.hasError) {
       return (
         <CenterContent>
           <ErrorMessage />

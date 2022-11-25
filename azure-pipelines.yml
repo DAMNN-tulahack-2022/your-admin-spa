@@ -1,0 +1,32 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- release/*
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: yarn
+  displayName: 'Install node modules'
+
+- script: npx locize download --api-key $LOCIZE_API_KEY --project-id $LOCIZE_PROJECT_ID --path $(locizeDistPath)
+  env:
+    LOCIZE_API_KEY: $(locizeApiKey)
+    LOCIZE_PROJECT_ID: $(locizeProjectId)
+  displayName: 'Download locize data'
+
+- script: yarn build
+  displayName: 'Build'
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'REG_RU_PROD'
+    contents: '/damnn.site/**'
+    targetFolder: '/var/www/u1843096/data/www'
+    cleanTargetFolder: true
+    overwrite: true
+  displayName: 'Copy files to hosting'

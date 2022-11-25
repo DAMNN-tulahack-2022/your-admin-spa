@@ -1,0 +1,54 @@
+{
+  "teamLeads": [
+    {
+      "id": "fdasfsalkk",
+      "login": "team___Lead",
+      "firstName": "Maskim",
+      "lastName": "Fjfkds",
+      "middleName": "fdsfs",
+      "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
+      "viewedIds": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "currentProjectId": "fldskjflsjkjfs",
+      "completedProjectsId": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "levelTitle": "senior-pomidor-3"
+    },
+    {
+      "id": "fdasfsalkk@fdsfsd",
+      "login": "team___Lead",
+      "firstName": "Maskim",
+      "lastName": "Fjfkds@423432",
+      "middleName": "fdsfs",
+      "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
+      "viewedIds": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "currentProjectId": "fldskjflsjkjfs",
+      "completedProjectsId": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "levelTitle": "senior-pomidor-3"
+    }
+  ],
+  "technologies": [
+    {
+      "label": "TypeScript",
+      "id": "49320jf3fdsa"
+    },
+    {
+      "label": "C#",
+      "id": "49320jf3fdsa"
+    },
+    {
+      "label": "SQL",
+      "id": "49320jf3fdsa"
+    },
+    {
+      "label": "Go",
+      "id": "49320jf3fdsa"
+    },
+    {
+      "label": "Java",
+      "id": "49320jf3fdsa"
+    },
+    {
+      "label": "Python",
+      "id": "49320jf3fdsa"
+    }
+  ]
+}

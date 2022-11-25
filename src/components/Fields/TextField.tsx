@@ -7,8 +7,8 @@ type Props = {
   name: string
 } & TextFieldProps
 
-export const TextField = forwardRef<Props, any>(
-  ({ name, ...muiTextFieldProps }, ref) => (
+export const TextField = forwardRef<any, Props>(
+  ({ name, ...muiTextFieldProps }: Props, ref) => (
     <Field
       name={name}
       render={props => (

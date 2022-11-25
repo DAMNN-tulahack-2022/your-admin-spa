@@ -1,5 +1,6 @@
 import React from 'react'
 
+import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import {
   Box,
@@ -11,19 +12,20 @@ import {
 } from '@mui/material'
 
 import { NavItem } from '@/types'
+import { GET_NAV_LINK } from '@/types/constants'
 
 export const Sidebar: React.FC = () => {
   const { palette } = useTheme()
   const navItems: NavItem[] = [
     {
-      to: '/',
+      to: GET_NAV_LINK.mainPage(),
       label: 'Главная',
       icon: HomeOutlinedIcon,
     },
     {
-      to: '/',
-      label: 'Главная',
-      icon: HomeOutlinedIcon,
+      to: GET_NAV_LINK.projectsPage(),
+      label: 'Проекты',
+      icon: AccountTreeOutlinedIcon,
     },
     {
       to: '/',

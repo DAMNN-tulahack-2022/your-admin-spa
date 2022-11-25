@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Stack } from '@mui/material'
+import { Box, Container, Stack } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 
 import { Header } from '@/layouts/AuthLayout/Header'
@@ -12,8 +12,10 @@ export const AuthLayout: React.FC = () => {
       <Header />
       <Stack direction="row" sx={{ overflowY: 'hidden', flexGrow: 3 }}>
         <Sidebar />
-        <Box height="100%" sx={{ overflowY: 'auto', flexGrow: 1 }}>
-          <Outlet />
+        <Box height="100%" py={3} sx={{ overflowY: 'auto', flexGrow: 1 }}>
+          <Container maxWidth="lg">
+            <Outlet />
+          </Container>
         </Box>
       </Stack>
     </Stack>

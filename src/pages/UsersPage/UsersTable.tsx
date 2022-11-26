@@ -53,7 +53,7 @@ export const UsersTable: React.FC = () => {
         </TableHead>
         <TableBody>
           {users.map(user => (
-            <TableRow key={user.id}>
+            <TableRow key={`${user.id}-${user.login}-${user.lastName}`}>
               <TableCell>
                 <Link
                   underline="hover"

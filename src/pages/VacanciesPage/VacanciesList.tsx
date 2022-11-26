@@ -13,8 +13,8 @@ import { useData } from '@/hooks'
 import { Vacancy } from '@/pages/VacanciesPage/Vacancy'
 
 interface Props {
-  selectedVacancyId: string
-  handleVacancyClick: (id: string) => void
+  selectedVacancyId: number
+  handleVacancyClick: (id: number) => void
 }
 
 export const VacanciesList: React.FC<Props> = ({

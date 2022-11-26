@@ -6,7 +6,7 @@ import { Vacancy as IVacancy } from '@/types'
 
 interface Props {
   vacancy: IVacancy
-  handleClick: (id: string) => void
+  handleClick: (id: number) => void
   selected: boolean
 }
 

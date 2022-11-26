@@ -6,7 +6,7 @@ export type Children = React.ReactNode | React.ReactNode[]
 
 export interface Admin {
   login: string
-  id: string
+  id: number
 }
 
 export interface NavItem {
@@ -18,45 +18,45 @@ export interface NavItem {
 export type ProcessString = (...values: any) => string
 
 export interface User {
-  id: string
+  id: number
   login: string
-  viewedPostsIds: string[]
+  viewedPostsIds: number[]
   firstName: string
   lastName: string
   middleName: string
   avatarUrl: string
-  currentProjectId: string
-  completedProjectsIds: string[]
-  skillsIds: string[]
+  currentProjectId: number
+  completedProjectsIds: number[]
+  skillsIds: number[]
   role: UserRole
   totalExperience: number
-  vacancyId: string
+  vacancyId: number
 }
 
 export interface Article {
   title: string
   description: string
-  id: string
-  authorId: string
+  id: number
+  authorId: number
   totalViewed: number
-  skills_ids: string[]
+  skillsIds: number[]
   experience: number
 }
 
 export interface Project {
   title: string
-  id: string
+  id: number
   desciption: string
-  teamLeadId: string
-  skillsIds: string[]
-  usersIds: string[]
+  teamLeadId: number
+  skillsIds: number[]
+  usersIds: number[]
   experience: number
 }
 
 export interface VacancyProgress {
-  gradesIds: string[]
-  vacancyId: string
-  id: string
+  gradesIds: number[]
+  vacancyId: number
+  id: number
 }
 
 export interface Grade {
@@ -64,17 +64,17 @@ export interface Grade {
   description: string
   experience: number
   needsApproval: string
-  id: string
+  id: number
 }
 
 export interface Skill {
   label: string
-  id: string
+  id: number
 }
 
 export interface Vacancy {
   label: string
-  id: string
+  id: number
 }
 
 export interface Data {

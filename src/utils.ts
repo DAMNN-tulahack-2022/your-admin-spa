@@ -18,9 +18,9 @@ export const getGradeByUser = (user: User, data: Data): Grade => {
   const grades = data.grades.filter(({ id }) =>
     vacancyProgress.gradesIds.some(gradeId => id === gradeId),
   ) as Grade[]
-  return grades.find(
-    grade => !!(grade.experience - user.totalExperience),
-  ) as Grade
+  return grades.find(grade => {
+    return grade.experience - user.totalExperience > 0
+  }) as Grade
 }
 
 export const getVacancyByUser = (user: User, data: Data): Vacancy => {
@@ -44,3 +44,18 @@ export const getCurrentProjectByUser = (
   data: Data,
 ): Project | null =>
   data.projects.find(({ id }) => user.currentProjectId === id) || null
+
+export const getGradesByVacancyId = (
+  vacancyId: number,
+  data: Data,
+): Grade[] | null => {
+  const vacancyProgress = data.vacanciesProgresses.find(
+    ({ vacancyId: progressVacancyId }) => vacancyId === progressVacancyId,
+  ) as VacancyProgress
+
+  if (!vacancyProgress) {
+    return []
+  }
+
+  return data.grades.filter(({ id }) => vacancyProgress.gradesIds.includes(id))
+}

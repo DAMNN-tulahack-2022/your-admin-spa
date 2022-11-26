@@ -32,8 +32,11 @@ export interface User {
   lastName: string
   middleName: string
   avatarUrl: string
-  levelTitle: string
+  viewedPostsId: string[]
   currentProjectId: string
-  completedProjectId: string[]
-  tole: UserRole
+  completedProjectsId: string[]
+  grade: string
+  technologiesId: string[]
+  role: UserRole
+  vacancy: string
 }

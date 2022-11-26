@@ -2,6 +2,7 @@ import React from 'react'
 
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline'
 import {
   Box,
   ListItemIcon,
@@ -10,11 +11,13 @@ import {
   MenuList,
   useTheme,
 } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 import { NavItem } from '@/types'
 import { GET_NAV_LINK } from '@/types/constants'
 
 export const Sidebar: React.FC = () => {
+  const navigate = useNavigate()
   const { palette } = useTheme()
   const navItems: NavItem[] = [
     {
@@ -28,19 +31,9 @@ export const Sidebar: React.FC = () => {
       icon: AccountTreeOutlinedIcon,
     },
     {
-      to: '/',
-      label: 'Главная',
-      icon: HomeOutlinedIcon,
-    },
-    {
-      to: '/',
-      label: 'Главная',
-      icon: HomeOutlinedIcon,
-    },
-    {
-      to: '/',
-      label: 'Главная',
-      icon: HomeOutlinedIcon,
+      to: GET_NAV_LINK.usersPage(),
+      label: 'Пользователи',
+      icon: PeopleOutlineIcon,
     },
   ]
 
@@ -48,7 +41,7 @@ export const Sidebar: React.FC = () => {
     <Box height="100%" width={300} bgcolor={palette.primary.light}>
       <MenuList>
         {navItems.map(({ to, label, icon: Icon }) => (
-          <MenuItem key={`${to}-${label}`}>
+          <MenuItem onClick={() => navigate(to)} key={`${to}-${label}`}>
             <ListItemIcon>
               <Icon />
             </ListItemIcon>

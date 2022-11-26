@@ -1,8 +1,8 @@
 import Axios from 'axios'
-
+// https://jsonplaceholder.typicode.com/
 export const useAxios = () => {
   const axios = Axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com/',
+    baseURL: 'http://localhost:3004/',
     headers: {
       Authorization: 'Bearer PLACEHOLDER',
     },

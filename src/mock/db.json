@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "fdasfsalkk",
+      "login": "team___Lead",
+      "firstName": "Maskim",
+      "lastName": "Fjfkds",
+      "middleName": "fdsfs",
+      "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
+      "viewedIds": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "currentProjectId": "fldskjflsjkjfs",
+      "completedProjectsId": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "grade": "senior-pomidor-3",
+      "technologiesId": ["1", "2", "3"],
+      "role": "user",
+      "vacancy": "frontEndDeveloper"
+    },
+    {
+      "id": "fdasfsalkk@fdsfsd",
+      "login": "tcaty",
+      "firstName": "Maskim",
+      "lastName": "Fjfkds@423432",
+      "middleName": "fdsfs",
+      "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
+      "viewedIds": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "currentProjectId": "fldskjflsjkjfs",
+      "completedProjectsId": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
+      "grade": "senior-pomidor-3",
+      "technologiesId": ["1", "2", "3"],
+      "role": "teamLead",
+      "vacancy": "softwareDeveloper"
+      }
+    ]
+}

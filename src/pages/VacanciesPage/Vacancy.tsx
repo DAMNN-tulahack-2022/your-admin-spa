@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ListItemButton, ListItemText } from '@mui/material'
+import { ListItemButton, ListItemText, useTheme } from '@mui/material'
 
 import { Vacancy as IVacancy } from '@/types'
 
@@ -15,8 +15,13 @@ export const Vacancy: React.FC<Props> = ({
   handleClick,
   selected,
 }) => {
+  const { palette } = useTheme()
   return (
-    <ListItemButton onClick={() => handleClick(vacancy.id)} selected={selected}>
+    <ListItemButton
+      onClick={() => handleClick(vacancy.id)}
+      selected={selected}
+      sx={{ border: `1px solid ${palette.grey.A200}`, mb: 2, borderRadius: 2 }}
+    >
       <ListItemText>{vacancy.label}</ListItemText>
     </ListItemButton>
   )

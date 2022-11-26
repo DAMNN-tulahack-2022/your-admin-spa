@@ -14,6 +14,7 @@ import { Sidebar } from '@/layouts/AuthLayout/Sidebar'
 
 export const AuthLayoutWithothContext: React.FC = () => {
   const [isSidebarCollaplsed, setIsSidebarCollapsed] = useState(false)
+
   const dataContext = useDataContext()
 
   if (dataContext.isLoading) {
@@ -31,7 +32,7 @@ export const AuthLayoutWithothContext: React.FC = () => {
       />
       <Stack direction="row" sx={{ overflowY: 'hidden', flexGrow: 3 }}>
         <Sidebar isCollapsed={isSidebarCollaplsed} />
-        <Box height="100%" py={3} sx={{ overflowY: 'auto', flexGrow: 1 }}>
+        <Box height="100%" py={4} sx={{ overflowY: 'auto', flexGrow: 1 }}>
           <Container maxWidth="lg">
             <Outlet />
           </Container>

@@ -42,6 +42,7 @@ export const ProjectCreatingForm: React.FC = () => {
             label={t('users')}
             filterByRole={UserRole.User}
           />
+          <TextField name="experience" label={t('experience')} />
           <TextField
             name="description"
             label={t('description')}

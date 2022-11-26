@@ -59,3 +59,8 @@ export const getGradesByVacancyId = (
 
   return data.grades.filter(({ id }) => vacancyProgress.gradesIds.includes(id))
 }
+
+export const getMaxId = (field: string, data: any): number =>
+  data[field as any].sort((a: any, b: any) => a.id - b.id)[
+    data[field as any].length - 1
+  ].id

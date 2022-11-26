@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Box, Container, Stack } from '@mui/material'
 import { Outlet } from 'react-router-dom'
@@ -13,6 +13,7 @@ import { Header } from '@/layouts/AuthLayout/Header'
 import { Sidebar } from '@/layouts/AuthLayout/Sidebar'
 
 export const AuthLayoutWithothContext: React.FC = () => {
+  const [isSidebarCollaplsed, setIsSidebarCollapsed] = useState(false)
   const dataContext = useDataContext()
 
   if (dataContext.isLoading) {
@@ -25,9 +26,11 @@ export const AuthLayoutWithothContext: React.FC = () => {
 
   return (
     <Stack height="100vh">
-      <Header />
+      <Header
+        toggleSidebarCollapses={() => setIsSidebarCollapsed(prev => !prev)}
+      />
       <Stack direction="row" sx={{ overflowY: 'hidden', flexGrow: 3 }}>
-        <Sidebar />
+        <Sidebar isCollapsed={isSidebarCollaplsed} />
         <Box height="100%" py={3} sx={{ overflowY: 'auto', flexGrow: 1 }}>
           <Container maxWidth="lg">
             <Outlet />

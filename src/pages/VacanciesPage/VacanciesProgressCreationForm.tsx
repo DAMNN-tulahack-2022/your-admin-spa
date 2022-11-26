@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next'
 
 import { SelectField, TextField } from '@/components/Fields'
 import { Vacancy } from '@/types'
+import { getMaxId } from '@/utils'
 
 interface Props {
   selectedVacancyId: number
@@ -30,21 +31,27 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
   const [activeStep, setActiveStep] = useState(-1)
   const queryClient = useQueryClient()
 
-  // TODO: create new vacancy progress
   const onSubmit = (values: any) => {
     queryClient.setQueryData(['data'], (data: any) => {
       const selectedVacancy = data.vacancies.find(
         ({ id }: any) => id === selectedVacancyId,
       ) as Vacancy
-      console.log(selectedVacancy)
+      const maxGradeId = getMaxId('grades', data)
+      const gradesWithId = values.grades.map((grade: any, idx: any) => ({
+        ...grade,
+        id: idx + maxGradeId + 1,
+      }))
       return {
         ...data,
         vacanciesProgresses: [
           ...data.vacanciesProgresses,
           {
-            gradesIds: values.grades.map((item: any, idx: any) => idx),
+            id: getMaxId('vacanciesProgress', data),
+            vacancyId: selectedVacancy.id,
+            gradesIds: gradesWithId.map(({ id }: any) => id),
           },
         ],
+        grades: [...data.grades, ...gradesWithId],
       }
     })
   }

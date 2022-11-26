@@ -24,7 +24,7 @@ export const UserOption: React.FC<Props> = ({ buttonProps, ...teamLead }) => {
       </ListItemIcon>
       <ListItemText
         primary={`${teamLead.lastName} ${teamLead.firstName}`}
-        secondary={getGradeByUser(teamLead, data).label}
+        secondary={getGradeByUser(teamLead, data)?.label}
       />
     </ListItemButton>
   )

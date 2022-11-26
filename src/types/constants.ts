@@ -6,12 +6,14 @@ export enum UserRole {
 }
 
 export enum Endpoints {
-  UsersList = 'users',
+  Users = 'users',
   GithubProfile = 'https://github.com',
 }
 
 export const MAP_ENDPOINT_TO_GET_URL: Record<Endpoints, ProcessString> = {
-  [Endpoints.UsersList]: () => Endpoints.UsersList,
+  [Endpoints.Users]: (id?: string) => {
+    return id ? `/users/${id}` : '/users'
+  },
   [Endpoints.GithubProfile]: (login: string) =>
     `${Endpoints.GithubProfile}/${login}`,
 }
@@ -30,6 +32,6 @@ export const GET_NAV_LINK: GetNavLink = {
   loginPage: () => '/login',
   usersPage: () => '/users',
   userPage: (id?: string) => {
-    return id ? `/user/${id}` : '/user/:id'
+    return id ? `/users/${id}` : '/users/:id'
   },
 }

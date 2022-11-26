@@ -1,34 +1,171 @@
 {
-  "users": [
-    {
-      "id": "fdasfsalkk",
-      "login": "team___Lead",
-      "firstName": "Maskim",
-      "lastName": "Fjfkds",
-      "middleName": "fdsfs",
-      "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
-      "viewedIds": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
-      "currentProjectId": "fldskjflsjkjfs",
-      "completedProjectsId": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
-      "grade": "senior-pomidor-3",
-      "technologiesId": ["1", "2", "3"],
-      "role": "user",
-      "vacancy": "frontEndDeveloper"
-    },
-    {
-      "id": "fdasfsalkk@fdsfsd",
-      "login": "tcaty",
-      "firstName": "Maskim",
-      "lastName": "Fjfkds@423432",
-      "middleName": "fdsfs",
-      "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
-      "viewedIds": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
-      "currentProjectId": "fldskjflsjkjfs",
-      "completedProjectsId": ["flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs", "flsdklfadkjs"],
-      "grade": "senior-pomidor-3",
-      "technologiesId": ["1", "2", "3"],
-      "role": "teamLead",
-      "vacancy": "softwareDeveloper"
+  "data": {
+    "users": [
+      {
+        "id": "user1",
+        "login": "tcaty",
+        "viewedPostsIds": ["post1", "post2", "post3"],
+        "firstName": "Maskim",
+        "lastName": "Fjfkds",
+        "middleName": "fdsfs",
+        "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
+        "currentProjectId": "project1",
+        "completedProjectsId": ["project2", "project3", "project4", "project5"],
+        "skillsIds": ["skill1", "skill2"],
+        "role": "teamLead",
+        "totalExperience": 324,
+        "vacancyId": "vacancy1"
+      },
+      {
+        "id": "user2",
+        "login": "nicolation",
+        "viewedPostsIds": ["post1", "post2", "post3"],
+        "firstName": "Maskim",
+        "lastName": "Fjfkds",
+        "middleName": "fdsfs",
+        "avatarUrl": "https://cdn4.buysellads.net/uu/1/127574/1668535591-SStk2-1.jpg",
+        "currentProjectId": "project1",
+        "completedProjectsId": ["project2", "project3", "project4", "project5"],
+        "skillsIds": ["skill1", "skill2"],
+        "role": "user",
+        "totalExperience": 324,
+        "vacancyId": "vacancy1"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Very important project",
+        "id": "project1",
+        "description": "Very long decription Very long decription Very long decription Very long decription Very long decription Very long decription Very long decription",
+        "teamLeadId": "user1",
+        "skillsIds": ["skill1", "skill2"],
+        "usersIds": ["user1", "user2"],
+        "experience": 5000
+      },
+      {
+        "title": "Very important project number2",
+        "id": "project2",
+        "description": "Very long decription Very long decription Very long decription Very long decription Very long decription Very long decription Very long decription",
+        "teamLeadId": "user1",
+        "skillsIds": ["skill4", "skill2", "skill3"],
+        "usersIds": ["user1", "user2"],
+        "experience": 3000
+      }
+    ],
+    "skills": [
+      {
+        "label": "JS",
+        "id": "skill1"
+      },
+      {
+        "label": "JS",
+        "id": "skill2"
+      },
+      {
+        "label": "JS",
+        "id": "skill3"
+      },
+      {
+        "label": "JS",
+        "id": "skill4"
+      }
+    ],
+    "grades": [
+      {
+        "label": "Junior-1",
+        "description": "Nooooo",
+        "needsApproval": false,
+        "id": "grade1",
+        "experience": 50
+      },
+      {
+        "label": "Junior-3",
+        "description": "Nooooo",
+        "needsApproval": false,
+        "id": "grade2",
+        "experience": 100
+      },
+      {
+        "label": "Senior-1",
+        "description": "Nooooo",
+        "needsApproval": true,
+        "id": "grade3",
+        "experience": 400
+      },
+      {
+        "label": "Middle-1",
+        "description": "Nooooo",
+        "needsApproval": true,
+        "id": "grade4",
+        "experience": 200
+      },
+      {
+        "label": "Middle-3",
+        "description": "Nooooo",
+        "needsApproval": false,
+        "id": "grade5",
+        "experience": 300
+      }
+    ],
+    "vacancies": [
+      {
+        "label": "Fronteend-developr",
+        "id": "vacancy1"
+      },
+      {
+        "label": "Software developer",
+        "id": "vacancy2"
+      },
+      {
+        "label": "Backender",
+        "id": "vacancy3"
+      }
+    ],
+    "vacanciesProgresses": [
+      {
+        "gradesIds": ["grade1", "grade2"],
+        "vacancyId": "vacancy2",
+        "id": "vacancyProgress1"
+      },
+      {
+        "gradesIds": ["grade3", "grade4", "grade5"],
+        "vacancyId": "vacancy3",
+        "id": "vacancyProgress2"
+      },
+      {
+        "gradesIds": ["grade3", "grade4", "grade5"],
+        "vacancyId": "vacancy1",
+        "id": "vacancyProgress3"
+      }
+    ],
+    "articles": [
+      {
+        "title": "Hello world",
+        "description": "Very very long decription Very very long decription Very very long decription Very very long decription Very very long decription Very very long decription",
+        "id": "article1",
+        "authorId": "user1",
+        "totalViewed": 30,
+        "skillsIds": ["skill1", "skill3"],
+        "experience": 40
+      },
+      {
+        "title": "Hello minecraft",
+        "description": "Very very long decription Very very long decription Very very long decription Very very long decription Very very long decription Very very long decription",
+        "id": "article2",
+        "authorId": "user1",
+        "totalViewed": 60,
+        "skillsIds": ["skill1", "skill3", "skill2"],
+        "experience": 50
+      }
+    ,{
+        "title": "Hello world",
+        "description": "Very very long decription Very very long decription Very very long decription Very very long decription Very very long decription Very very long decription",
+        "id": "article3",
+        "authorId": "user1",
+        "totalViewed": 30,
+        "skillsIds": ["skill1", "skill4"],
+        "experience": 55
       }
     ]
+  }
 }

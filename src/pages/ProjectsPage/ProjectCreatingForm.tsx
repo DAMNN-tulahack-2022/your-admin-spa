@@ -6,14 +6,12 @@ import { useTranslation } from 'react-i18next'
 
 import { AutocompleteField, TextField } from '@/components/Fields'
 import { UsersAutocompleteField } from '@/components/UsersAutocompleteField'
-
-import data from '../../mock/data.json'
+import { useData } from '@/hooks'
+import { UserRole } from '@/types/constants'
 
 export const ProjectCreatingForm: React.FC = () => {
   const { t } = useTranslation()
-
-  // TODO: fetch users
-  const techologies = data.technologies
+  const { skills } = useData()
 
   const handleSubmit = (values: any) => {
     // TODO: create project
@@ -27,14 +25,23 @@ export const ProjectCreatingForm: React.FC = () => {
         <Stack component="form" onSubmit={handleSubmit} gap={3} maxWidth={500}>
           <Typography variant="h5">{t('createNewProject')}</Typography>
           <TextField name="label" label={t('label')} />
-          <UsersAutocompleteField name="teamLead" label={t('teamLead')} />
+          <UsersAutocompleteField
+            name="teamLead"
+            label={t('teamLead')}
+            filterByRole={UserRole.TeamLead}
+          />
           <AutocompleteField
             multiple
-            name="technologiesId"
-            label={t('techonolies')}
-            options={techologies}
+            name="skillsIds"
+            label={t('skills')}
+            options={skills}
           />
-          <UsersAutocompleteField multiple name="users" label={t('users')} />
+          <UsersAutocompleteField
+            multiple
+            name="users"
+            label={t('users')}
+            filterByRole={UserRole.User}
+          />
           <TextField
             name="description"
             label={t('description')}

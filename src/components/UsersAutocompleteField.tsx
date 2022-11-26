@@ -1,30 +1,25 @@
 import React from 'react'
 
 import { AutocompleteField } from '@/components/Fields'
-import data from '@/mock/data.json'
+import { useData } from '@/hooks'
 import { UserOption } from '@/pages/ProjectsPage/UserOption'
+import { UserRole } from '@/types/constants'
 
 interface Props {
+  filterByRole: UserRole
   name: string
   label: string
   multiple?: boolean
 }
 
 export const UsersAutocompleteField: React.FC<Props> = ({
+  filterByRole,
   name,
   label,
   multiple = false,
 }) => {
-  // TODO: fetch users
-  const teamLeads = data.teamLeads.map(
-    ({ avatarUrl, firstName, lastName, id, levelTitle }) => ({
-      avatarUrl,
-      firstName,
-      lastName,
-      id,
-      levelTitle,
-    }),
-  )
+  const { users } = useData()
+  const teamLeads = users.filter(user => user.role === filterByRole)
 
   return (
     <AutocompleteField

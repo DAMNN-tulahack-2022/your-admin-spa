@@ -7,25 +7,25 @@ import {
   ListItemText,
 } from '@mui/material'
 
-interface Props {
-  avatarUrl: string
-  lastName: string
-  firstName: string
-  levelTitle: string
+import { useData } from '@/hooks'
+import { User } from '@/types'
+import { getGradeByUser } from '@/utils'
+
+interface Props extends User {
   buttonProps: any
 }
 
-export const UserOption: React.FC<Props> = ({
-  avatarUrl,
-  levelTitle,
-  buttonProps,
-  firstName,
-  lastName,
-}) => (
-  <ListItemButton {...buttonProps}>
-    <ListItemIcon>
-      <Avatar alt="team lead" src={avatarUrl} />
-    </ListItemIcon>
-    <ListItemText primary={`${lastName} ${firstName}`} secondary={levelTitle} />
-  </ListItemButton>
-)
+export const UserOption: React.FC<Props> = ({ buttonProps, ...teamLead }) => {
+  const data = useData()
+  return (
+    <ListItemButton {...buttonProps}>
+      <ListItemIcon>
+        <Avatar alt="team lead" src={teamLead.avatarUrl} />
+      </ListItemIcon>
+      <ListItemText
+        primary={`${teamLead.lastName} ${teamLead.firstName}`}
+        secondary={getGradeByUser(teamLead, data).label}
+      />
+    </ListItemButton>
+  )
+}

@@ -1,3 +1,5 @@
 export * from './useAxios'
 export * from './useQuery'
 export * from './useCurrentUser'
+export * from './useData'
+export * from './useDataProvider'

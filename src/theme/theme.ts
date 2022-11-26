@@ -13,6 +13,10 @@ export const theme = responsiveFontSizes(
           form: {
             width: '100%',
           },
+          ul: {
+            margin: 0,
+            padding: 0,
+          },
         },
       },
     },

@@ -16,6 +16,7 @@ interface Props {
   renderButton: (handleClickOpen: () => void) => React.ReactNode
   renderContent: () => Children
   renderAction: () => React.ReactNode
+  handleSubmit?: (values: any) => void
 }
 
 export const DialogButton: React.FC<Props> = ({
@@ -23,6 +24,7 @@ export const DialogButton: React.FC<Props> = ({
   renderButton,
   renderContent,
   renderAction,
+  handleSubmit = () => {},
 }) => {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
@@ -34,12 +36,14 @@ export const DialogButton: React.FC<Props> = ({
     <>
       {renderButton(handleClickOpen)}
       <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>{renderContent()}</DialogContent>
-        <DialogActions onClick={handleClose}>
-          <Button>{t('cancel')}</Button>
-          {renderAction()}
-        </DialogActions>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogContent>{renderContent()}</DialogContent>
+          <DialogActions onClick={handleClose}>
+            <Button>{t('cancel')}</Button>
+            {renderAction()}
+          </DialogActions>
+        </form>
       </Dialog>
     </>
   )

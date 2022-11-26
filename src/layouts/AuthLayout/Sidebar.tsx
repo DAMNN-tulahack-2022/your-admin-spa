@@ -1,6 +1,7 @@
 import React from 'react'
 
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
+import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline'
 import {
@@ -11,29 +12,36 @@ import {
   MenuList,
   useTheme,
 } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { NavItem } from '@/types'
 import { GET_NAV_LINK } from '@/types/constants'
 
 export const Sidebar: React.FC = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { palette } = useTheme()
   const navItems: NavItem[] = [
     {
       to: GET_NAV_LINK.mainPage(),
-      label: 'Главная',
+      label: t('home'),
       icon: HomeOutlinedIcon,
     },
     {
       to: GET_NAV_LINK.projectsPage(),
-      label: 'Проекты',
+      label: t('projects'),
       icon: AccountTreeOutlinedIcon,
     },
     {
       to: GET_NAV_LINK.usersPage(),
-      label: 'Пользователи',
+      label: t('users'),
       icon: PeopleOutlineIcon,
+    },
+    {
+      to: GET_NAV_LINK.vacanciesPage(),
+      label: t('vacancies'),
+      icon: AssignmentIndOutlinedIcon,
     },
   ]
 

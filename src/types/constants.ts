@@ -24,6 +24,7 @@ interface GetNavLink {
   loginPage: ProcessString
   usersPage: ProcessString
   userPage: ProcessString
+  vacanciesPage: ProcessString
 }
 
 export const GET_NAV_LINK: GetNavLink = {
@@ -34,4 +35,5 @@ export const GET_NAV_LINK: GetNavLink = {
   userPage: (id?: string) => {
     return id ? `/users/${id}` : '/users/:id'
   },
+  vacanciesPage: () => '/vacancies',
 }

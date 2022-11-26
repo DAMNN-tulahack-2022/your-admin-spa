@@ -12,11 +12,17 @@ import { getCurrentProjectByUser, getSkillByUser } from '@/utils'
 interface RowProps {
   label: string
   renderValue: () => Children
+  disableGutters?: boolean
 }
 
-const Row: React.FC<RowProps> = ({ label, renderValue }) => {
+const Row: React.FC<RowProps> = ({ label, renderValue, disableGutters }) => {
   return (
-    <Stack gap={0.5} direction="row" alignItems="center">
+    <Stack
+      gap={0.5}
+      direction="row"
+      alignItems="center"
+      py={disableGutters ? 0 : 0.5}
+    >
       <Typography fontWeight={700}>{label}: </Typography>
       {renderValue()}
     </Stack>
@@ -75,6 +81,10 @@ export const UserInfo: React.FC<Props> = ({ user }) => {
         renderValue={() => (
           <Typography>{getCurrentProjectByUser(user, data)?.title}</Typography>
         )}
+      />
+      <Row
+        label={t('experience')}
+        renderValue={() => <Typography>{user.totalExperience}</Typography>}
       />
     </Block>
   )

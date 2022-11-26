@@ -4,10 +4,10 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import {
+  Box,
   Button,
   IconButton,
   Link,
-  Paper,
   Stack,
   Table,
   TableBody,
@@ -34,7 +34,7 @@ export const UsersTable: React.FC = () => {
   const { users } = useData()
 
   return (
-    <TableContainer component={Paper} sx={{ height: '80vh' }}>
+    <TableContainer component={Box} sx={{ height: '80vh' }}>
       <Table>
         <TableHead>
           <TableRow>

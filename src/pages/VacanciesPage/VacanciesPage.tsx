@@ -23,7 +23,7 @@ export const VacanciesPage: React.FC = () => {
         title={t('vacancies')}
         subtitle={t('hereYouCanManageVacancies')}
       />
-      <Grid container spacing={2} height={700}>
+      <Grid container spacing={3} height={700}>
         <Grid item xs={3} height="100%">
           <VacanciesList
             handleVacancyClick={setSelectedVacancyId}
@@ -31,7 +31,7 @@ export const VacanciesPage: React.FC = () => {
           />
         </Grid>
         <Grid item xs={8}>
-          <Block>
+          <Block title={t('vacancyProgress')}>
             {!grades?.length ? (
               <VacanciesProgressCreationForm
                 selectedVacancyId={selectedVacancyId}

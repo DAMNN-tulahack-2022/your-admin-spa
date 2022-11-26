@@ -1,18 +1,16 @@
 import Axios from 'axios'
-// https://jsonplaceholder.typicode.com/
+
+// http://193.43.147.117:8086/
 export const useAxios = () => {
   const axios = Axios.create({
-    baseURL: 'http://localhost:3004/',
-    headers: {
-      Authorization: 'Bearer PLACEHOLDER',
-    },
+    baseURL: 'http://localhost:3004',
   })
 
-  axios.defaults.headers.common = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Content-Type': 'application/json',
-  }
+  // axios.defaults.headers.common = {
+  //   'Access-Control-Allow-Origin': '*',
+  //   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  //   'Content-Type': 'application/json',
+  // }
 
   axios.interceptors.response.use(
     response => {

@@ -58,6 +58,7 @@ export const Sidebar: React.FC<Props> = ({ isCollapsed }) => {
       bgcolor={theme.palette.primary.light}
       sx={{
         transition: theme.transitions.create('width'),
+        boxShadow: '2px 2px 10px 2px rgba(70, 45, 101, 0.1) !important',
       }}
     >
       <List>

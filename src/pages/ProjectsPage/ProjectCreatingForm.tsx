@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button, Stack, Typography } from '@mui/material'
+import { Button, Stack } from '@mui/material'
 import { Form } from 'react-final-form'
 import { useTranslation } from 'react-i18next'
 
@@ -23,7 +23,6 @@ export const ProjectCreatingForm: React.FC = () => {
       onSubmit={handleSubmit}
       render={({ handleSubmit }) => (
         <Stack component="form" onSubmit={handleSubmit} gap={3} maxWidth={500}>
-          <Typography variant="h5">{t('createNewProject')}</Typography>
           <TextField name="label" label={t('label')} />
           <UsersAutocompleteField
             name="teamLead"

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {
   Box,
   Button,
+  Grid,
   Stack,
   Step,
   StepContent,
@@ -74,7 +75,6 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
         values,
       }) => (
         <Box component="form" onSubmit={handleSubmit}>
-          <Typography variant="h6">{t('createVacancyProgress')}</Typography>
           {activeStep < 0 && (
             <Button
               variant="contained"
@@ -84,71 +84,89 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
                 setActiveStep(activeStep + 1)
               }}
             >
-              {t('add')}
+              {t('createNewProgress')}
             </Button>
           )}
-          <FieldArray name="grades">
-            {({ fields }) => (
-              <Stepper activeStep={activeStep} orientation="vertical">
-                {fields.map((name, index) => (
-                  <Step key={`${name}-${index}`} active>
-                    <StepLabel>
-                      <TextField
-                        required
-                        size="small"
-                        name={`${name}.label`}
-                        label={t('label')}
-                      />
-                    </StepLabel>
-                    <StepContent>
-                      <TextField
-                        required
-                        size="small"
-                        name={`${name}.description`}
-                        label={t('description')}
-                        rows={8}
-                      />
-                      <SelectField
-                        size="small"
-                        name={`${name}.needsApproval`}
-                        label={t('needsApproval')}
-                        defaultValue={false}
-                        items={[
-                          { label: t('yes'), value: true },
-                          { label: t('false'), value: false },
-                        ]}
-                      />
-                      <TextField
-                        required
-                        size="small"
-                        name={`${name}.experience`}
-                        label={t('experience')}
-                      />
-                      <Stack direction="row" gap={1}>
-                        <Button
-                          onClick={() => {
-                            pop('grades')
-                            setActiveStep(activeStep - 1)
-                          }}
-                        >
-                          {t('remove')}
-                        </Button>
-                        <Button
-                          variant="contained"
-                          onClick={() => {
-                            push('grades', {})
-                            setActiveStep(activeStep + 1)
-                          }}
-                        >
-                          {t('add')}
-                        </Button>
-                      </Stack>
-                    </StepContent>
-                  </Step>
-                ))}
-              </Stepper>
-            )}
-          </FieldArray>
+          <Box>
+            <FieldArray name="grades">
+              {({ fields }) => (
+                <Stepper activeStep={activeStep} orientation="vertical">
+                  {fields.map((name, index) => (
+                    <Step key={`${name}-${index}`} active>
+                      <StepLabel sx={{ mb: 1 }}>
+                        <TextField
+                          required
+                          size="small"
+                          name={`${name}.label`}
+                          label={t('label')}
+                        />
+                      </StepLabel>
+                      <StepContent>
+                        <Grid container spacing={2}>
+                          <Grid item xs={8}>
+                            <TextField
+                              required
+                              size="small"
+                              name={`${name}.description`}
+                              label={t('description')}
+                              multiline
+                              rows={3.5}
+                              fullWidth
+                            />
+                          </Grid>
+                          <Grid item xs={4}>
+                            <Stack gap={2}>
+                              <SelectField
+                                size="small"
+                                name={`${name}.needsApproval`}
+                                label={t('needsApproval')}
+                                defaultValue={false}
+                                items={[
+                                  { label: t('yes'), value: true },
+                                  { label: t('false'), value: false },
+                                ]}
+                              />
+                              <TextField
+                                required
+                                size="small"
+                                name={`${name}.experience`}
+                                label={t('experience')}
+                              />
+                            </Stack>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Stack
+                              direction="row"
+                              gap={1}
+                              justifyContent="flex-end"
+                            >
+                              <Button
+                                onClick={() => {
+                                  pop('grades')
+                                  setActiveStep(activeStep - 1)
+                                }}
+                              >
+                                {t('remove')}
+                              </Button>
+                              <Button
+                                variant="contained"
+                                onClick={() => {
+                                  push('grades', {})
+                                  setActiveStep(activeStep + 1)
+                                }}
+                              >
+                                {t('add')}
+                              </Button>
+                            </Stack>
+                          </Grid>
+                        </Grid>
+                      </StepContent>
+                    </Step>
+                  ))}
+                </Stepper>
+              )}
+            </FieldArray>
+          </Box>
           {values.grades?.length > 0 && (
             <Stack direction="row" justifyContent="flex-end">
               <Button type="submit" variant="contained">

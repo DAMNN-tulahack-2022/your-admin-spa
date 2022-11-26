@@ -42,9 +42,9 @@ export const VacanciesList: React.FC<Props> = ({
   }
 
   return (
-    <Block>
-      <Stack direction="row" gap={1} alignItems="center">
-        <Typography>{t('createNewVacancy')}</Typography>
+    <Block
+      title={t('vacanciesList')}
+      action={
         <Form
           onSubmit={handleSubmit}
           render={({ handleSubmit }) => (
@@ -67,8 +67,9 @@ export const VacanciesList: React.FC<Props> = ({
             />
           )}
         />
-      </Stack>
-      <List>
+      }
+    >
+      <List disablePadding>
         {vacancies.map(vacancy => (
           <Vacancy
             vacancy={vacancy}

@@ -18,7 +18,11 @@ export const AuthLayoutWithothContext: React.FC = () => {
   const dataContext = useDataContext()
 
   if (dataContext.isLoading) {
-    return <LoadingIndication />
+    return (
+      <Stack height="100vh">
+        <LoadingIndication />
+      </Stack>
+    )
   }
 
   if (dataContext.hasError) {

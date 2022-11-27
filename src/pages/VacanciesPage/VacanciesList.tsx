@@ -1,7 +1,7 @@
 import React from 'react'
 
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
-import { Button, IconButton, List } from '@mui/material'
+import { Box, Button, IconButton, List } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Form } from 'react-final-form'
 import { useTranslation } from 'react-i18next'
@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { Block } from '@/components/Block'
 import { DialogButton } from '@/components/DialogButton'
 import { TextField } from '@/components/Fields'
-import { useAxios, useData } from '@/hooks'
+import { useAxios, useData, useSendToShackbar } from '@/hooks'
 import { Vacancy } from '@/pages/VacanciesPage/Vacancy'
 
 interface Props {
@@ -25,6 +25,7 @@ export const VacanciesList: React.FC<Props> = ({
   const { vacancies } = useData()
   const { t } = useTranslation()
   const axios = useAxios()
+  const sendToShackbar = useSendToShackbar()
 
   const { mutate } = useMutation({
     mutationFn: (label: string) =>
@@ -32,6 +33,10 @@ export const VacanciesList: React.FC<Props> = ({
         label,
       }),
     onSuccess: newVacancy => {
+      sendToShackbar({
+        variant: 'success',
+        message: 'Вакансия успешно создана',
+      })
       queryClient.setQueryData(['data'], (data: any) => ({
         ...data,
         vacancies: [...data.vacancies, newVacancy],
@@ -55,7 +60,9 @@ export const VacanciesList: React.FC<Props> = ({
               )}
               title={t('createNewVacancy')}
               renderContent={() => (
-                <TextField name="vacancyLabel" label={t('vacancy')} />
+                <Box pt={2}>
+                  <TextField name="vacancyLabel" label={t('vacancy')} />
+                </Box>
               )}
               renderAction={() => (
                 <Button type="submit" variant="contained">

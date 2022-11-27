@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 import { AutocompleteField, TextField } from '@/components/Fields'
 import { UsersAutocompleteField } from '@/components/UsersAutocompleteField'
-import { useAxios, useData } from '@/hooks'
+import { useAxios, useData, useSendToShackbar } from '@/hooks'
 import { UserRole } from '@/types/constants'
 import { getMaxId } from '@/utils'
 
@@ -16,6 +16,7 @@ export const ProjectCreatingForm: React.FC = () => {
   const queryClient = useQueryClient()
   const { t } = useTranslation()
   const data = useData()
+  const sendToSnackbar = useSendToShackbar()
 
   const { mutate } = useMutation({
     mutationFn: (project: any) => {
@@ -31,6 +32,10 @@ export const ProjectCreatingForm: React.FC = () => {
       })
     },
     onSuccess: newProject => {
+      sendToSnackbar({
+        variant: 'success',
+        message: 'Новый проект успешно создан',
+      })
       queryClient.setQueryData(['data'], (data: any) => ({
         ...data,
         projects: [...data.projects, newProject],

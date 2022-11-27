@@ -27,6 +27,9 @@ export const theme = responsiveFontSizes(
       },
       MuiCssBaseline: {
         styleOverrides: {
+          '#root': {
+            minHeight: '100vh',
+          },
           body: {
             minHeight: '100vh',
             margin: 0,

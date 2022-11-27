@@ -18,7 +18,7 @@ import { FieldArray } from 'react-final-form-arrays'
 import { useTranslation } from 'react-i18next'
 
 import { SelectField, TextField } from '@/components/Fields'
-import { useAxios } from '@/hooks'
+import { useAxios, useSendToShackbar } from '@/hooks'
 
 interface Props {
   selectedVacancyId: number
@@ -31,6 +31,7 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
   const [length, setLength] = useState<any>(-1)
   const [activeStep, setActiveStep] = useState(-1)
   const [gradesId, setGradesId] = useState<any>([])
+  const sendToShackbar = useSendToShackbar()
   const queryClient = useQueryClient()
   const axios = useAxios()
   const { mutate: addGrade } = useMutation({
@@ -48,6 +49,10 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
     mutationFn: (vacancyProgress: any) =>
       axios.post('/data/grade-progress/add', vacancyProgress),
     onSuccess: newVacancyProgress => {
+      sendToShackbar({
+        variant: 'success',
+        message: 'Вакансия успешно создана',
+      })
       queryClient.setQueryData(['data'], (data: any) => ({
         ...data,
         vacanciesProgresses: [...data.vacanciesProgresses, newVacancyProgress],
@@ -146,31 +151,33 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
                               />
                             </Stack>
                           </Grid>
-                          <Grid item xs={12}>
-                            <Stack
-                              direction="row"
-                              gap={1}
-                              justifyContent="flex-end"
-                            >
-                              <Button
-                                onClick={() => {
-                                  pop('grades')
-                                  setActiveStep(activeStep - 1)
-                                }}
+                          {index === activeStep && (
+                            <Grid item xs={12}>
+                              <Stack
+                                direction="row"
+                                gap={1}
+                                justifyContent="flex-end"
                               >
-                                {t('remove')}
-                              </Button>
-                              <Button
-                                variant="contained"
-                                onClick={() => {
-                                  push('grades', {})
-                                  setActiveStep(activeStep + 1)
-                                }}
-                              >
-                                {t('add')}
-                              </Button>
-                            </Stack>
-                          </Grid>
+                                <Button
+                                  onClick={() => {
+                                    pop('grades')
+                                    setActiveStep(activeStep - 1)
+                                  }}
+                                >
+                                  {t('remove')}
+                                </Button>
+                                <Button
+                                  variant="contained"
+                                  onClick={() => {
+                                    push('grades', {})
+                                    setActiveStep(activeStep + 1)
+                                  }}
+                                >
+                                  {t('add')}
+                                </Button>
+                              </Stack>
+                            </Grid>
+                          )}
                         </Grid>
                       </StepContent>
                     </Step>
@@ -180,8 +187,8 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
             </FieldArray>
           </Box>
           {values.grades?.length > 0 && (
-            <Stack direction="row" justifyContent="flex-end">
-              <Button type="submit" variant="contained">
+            <Stack direction="row" mt={4}>
+              <Button type="submit" variant="contained" size="large">
                 {t('submit')}
               </Button>
             </Stack>

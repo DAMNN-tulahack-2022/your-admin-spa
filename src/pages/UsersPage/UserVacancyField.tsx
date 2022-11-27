@@ -7,7 +7,7 @@ import { Form } from 'react-final-form'
 import { useTranslation } from 'react-i18next'
 
 import { SelectField } from '@/components/Fields'
-import { useAxios, useData } from '@/hooks'
+import { useAxios, useData, useSendToShackbar } from '@/hooks'
 import { User } from '@/types'
 import { getVacancyByUser } from '@/utils'
 
@@ -28,11 +28,16 @@ export const UserVacancyField: React.FC<Props> = ({ userId }) => {
     data.users.find(({ id }) => id === userId) as User,
     data,
   )
+  const sendToSnackbar = useSendToShackbar()
 
   const { mutate: editVacancy } = useMutation({
     mutationFn: ({ userId, vacancyId }: any) =>
       axios.post('/data/users/assign-vacancy', { userId, vacancyId }),
     onSuccess: (updatedUser: any) => {
+      sendToSnackbar({
+        variant: 'success',
+        message: 'Вы успешно сменили вакансию пользователю',
+      })
       const updatedUserIdx = data.users.findIndex(
         (useRr: User) => useRr.id === updatedUser.id,
       )

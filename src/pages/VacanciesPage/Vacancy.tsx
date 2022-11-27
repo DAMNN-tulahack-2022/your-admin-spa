@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { useAxios } from '@/hooks'
+import { useAxios, useData, useSendToShackbar } from '@/hooks'
 import { Vacancy as IVacancy } from '@/types'
 
 interface Props {
@@ -26,7 +26,9 @@ export const Vacancy: React.FC<Props> = ({
   selected,
 }) => {
   const { palette } = useTheme()
-
+  const data = useData()
+  const someoneHasThisOne = data.users.some(({ id }) => id === vacancy?.id)
+  const sendToSnackbar = useSendToShackbar()
   const queryClient = useQueryClient()
   const axios = useAxios()
   const { mutate } = useMutation({
@@ -50,7 +52,19 @@ export const Vacancy: React.FC<Props> = ({
       >
         <ListItemText>{vacancy.label}</ListItemText>
       </ListItemButton>
-      <IconButton color="error" onClick={() => mutate(vacancy?.id)}>
+      <IconButton
+        color="error"
+        onClick={() => {
+          if (someoneHasThisOne) {
+            sendToSnackbar({
+              variant: 'error',
+              message: 'Не удалось удалить вакансию',
+            })
+          } else {
+            mutate(vacancy?.id)
+          }
+        }}
+      >
         <DeleteOutlineIcon />
       </IconButton>
     </Box>

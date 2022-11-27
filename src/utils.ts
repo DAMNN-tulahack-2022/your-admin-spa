@@ -32,7 +32,7 @@ export const getVacancyProgressByVacancy = (
   data: Data,
 ): VacancyProgress => {
   return data.vacanciesProgresses.find(
-    ({ vacancyId }) => vacancyId === vacancy.id,
+    ({ vacancyId }) => vacancyId === 1,
   ) as unknown as VacancyProgress
 }
 

@@ -35,14 +35,14 @@ export const Sidebar: React.FC<Props> = ({ isCollapsed }) => {
       icon: HomeOutlinedIcon,
     },
     {
-      to: GET_NAV_LINK.projectsPage(),
-      label: t('projects'),
-      icon: AccountTreeOutlinedIcon,
-    },
-    {
       to: GET_NAV_LINK.usersPage(),
       label: t('users'),
       icon: PeopleOutlineIcon,
+    },
+    {
+      to: GET_NAV_LINK.projectsPage(),
+      label: t('projects'),
+      icon: AccountTreeOutlinedIcon,
     },
     {
       to: GET_NAV_LINK.vacanciesPage(),

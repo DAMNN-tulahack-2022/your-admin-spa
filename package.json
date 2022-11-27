@@ -28,6 +28,7 @@
     "json-server": "^0.17.1",
     "locize-cli": "^7.12.8",
     "lodash": "^4.17.21",
+    "notistack": "^2.0.8",
     "plotly.js": "^2.16.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

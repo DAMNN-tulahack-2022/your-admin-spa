@@ -28,6 +28,7 @@ export const AuthLayoutWithothContext: React.FC = () => {
   return (
     <Stack height="100vh">
       <Header
+        isSidebarCollapsed={isSidebarCollaplsed}
         toggleSidebarCollapses={() => setIsSidebarCollapsed(prev => !prev)}
       />
       <Stack direction="row" sx={{ overflowY: 'hidden', flexGrow: 3 }}>

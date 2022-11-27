@@ -1,9 +1,12 @@
 import Axios from 'axios'
 
+const API = 'http://193.43.147.117:8323/'
+const DEV_API = 'http://localhost:3004/'
+
 // http://193.43.147.117:8086/
 export const useAxios = () => {
   const axios = Axios.create({
-    baseURL: 'http://193.43.147.117:8323/',
+    baseURL: DEV_API,
   })
 
   // axios.defaults.headers.common = {

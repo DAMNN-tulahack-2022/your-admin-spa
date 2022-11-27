@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import MenuIcon from '@mui/icons-material/Menu'
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined'
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined'
 import {
   AppBar,
   IconButton,
@@ -15,9 +16,13 @@ import { LanguageSwitch } from '@/components/LanguageSwitch'
 
 interface Props {
   toggleSidebarCollapses: () => void
+  isSidebarCollapsed: boolean
 }
 
-export const Header: React.FC<Props> = ({ toggleSidebarCollapses }) => {
+export const Header: React.FC<Props> = ({
+  toggleSidebarCollapses,
+  isSidebarCollapsed,
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -39,10 +44,14 @@ export const Header: React.FC<Props> = ({ toggleSidebarCollapses }) => {
           sx={{ mr: 2 }}
           onClick={toggleSidebarCollapses}
         >
-          <MenuIcon />
+          {isSidebarCollapsed ? (
+            <KeyboardDoubleArrowRightOutlinedIcon />
+          ) : (
+            <KeyboardDoubleArrowLeftOutlinedIcon />
+          )}
         </IconButton>
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-          Your company
+          Your
         </Typography>
         <LanguageSwitch />
         <div>

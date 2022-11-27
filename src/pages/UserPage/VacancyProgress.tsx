@@ -1,5 +1,6 @@
 import React from 'react'
 
+import PrivacyTipOutlinedIcon from '@mui/icons-material/PrivacyTipOutlined'
 import {
   Button,
   Stack,
@@ -12,6 +13,8 @@ import {
 import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 
+import { DialogButton } from '@/components/DialogButton'
+import { StepApprovalStatus } from '@/components/StepApprovalStatus'
 import { useData } from '@/hooks'
 import { Grade, User } from '@/types'
 import { getGradeByUser } from '@/utils'
@@ -33,9 +36,10 @@ export const VacancyProgress: React.FC<Props> = ({
 
   const data = useData()
   const currentGrade = getGradeByUser(user, data)
-  const currentVacancyProgress = data.vacanciesProgresses
-    .find(({ vacancyId }: any) => vacancyId === user.vacancyId)
-    ?.gradesIds.findIndex((gradeId: any) => currentGrade.id === gradeId)
+  const currentVacancyProgress =
+    data.vacanciesProgresses
+      .find(({ vacancyId }: any) => vacancyId === user.vacancyId)
+      ?.gradesIds.findIndex((gradeId: any) => currentGrade.id === gradeId) || 0
 
   const updateExperience = (coef: number) => () => {
     queryClient.setQueryData(['data'], (data: any) => {
@@ -62,17 +66,54 @@ export const VacancyProgress: React.FC<Props> = ({
 
   return (
     <Stepper activeStep={currentVacancyProgress} orientation="vertical">
-      {grades.map(grade => (
+      {grades.map((grade, idx) => (
         <Step key={`${grade.label}-${grade.experience}`} {...stepProps}>
-          <StepLabel>{grade.label}</StepLabel>
+          <StepLabel>
+            <Stack direction="row" alignItems="center" gap={0.5}>
+              <Typography fontWeight={grade?.needsApproval ? 700 : 400}>
+                {grade.label}
+              </Typography>
+              {grade?.needsApproval && (
+                <StepApprovalStatus
+                  currentStep={idx}
+                  stepCount={currentVacancyProgress}
+                />
+              )}
+            </Stack>
+          </StepLabel>
           <StepContent>
             <Typography>{grade.description}</Typography>
             {!viewonly && (
-              <Stack direction="row" gap={1}>
-                <Button onClick={updateExperience(-1)}>{t('back')}</Button>
-                <Button variant="contained" onClick={updateExperience(1)}>
-                  {t('next')}
+              <Stack direction="row" gap={1} mt={1.5}>
+                <Button onClick={updateExperience(-1)} variant="outlined">
+                  {t('back')}
                 </Button>
+                {grade?.needsApproval ? (
+                  <DialogButton
+                    title={t('warning')}
+                    renderContent={() => (
+                      <Typography>{t('doYouWannaSkipApproval?')}</Typography>
+                    )}
+                    renderAction={() => (
+                      <Button
+                        variant="outlined"
+                        color="error"
+                        onClick={updateExperience(1)}
+                      >
+                        {t('skip')}
+                      </Button>
+                    )}
+                    renderButton={handleClickOpen => (
+                      <Button variant="contained" onClick={handleClickOpen}>
+                        {t('next')}
+                      </Button>
+                    )}
+                  />
+                ) : (
+                  <Button variant="contained" onClick={updateExperience(1)}>
+                    {t('next')}
+                  </Button>
+                )}
               </Stack>
             )}
           </StepContent>

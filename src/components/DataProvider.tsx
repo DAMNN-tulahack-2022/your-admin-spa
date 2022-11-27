@@ -13,14 +13,18 @@ export interface IDataContext {
 
 export const DataContext = createContext<IDataContext | null>(null)
 
+const API = '/data/lib'
+const DEV_API = '/data'
+
 export const DataProvider: React.FC<{ children: Children }> = ({
   children,
 }) => {
   const axios = useAxios()
   const queryResult = useQuery<Data, any, any, any>({
     queryKey: ['data'],
-    queryFn: () => axios.get<Data>('/data/lib').then(data => data),
+    queryFn: () => axios.get<Data>(DEV_API).then(data => data),
   })
+  console.log(queryResult)
   return (
     <DataContext.Provider
       value={{

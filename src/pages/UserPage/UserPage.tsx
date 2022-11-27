@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Stack } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
@@ -30,26 +30,30 @@ export const UserPage: React.FC = () => {
         subtitle={t('metricsAndInfoAboutSelectedUser')}
         showback
       />
-      <Stack direction="row" gap={gap}>
-        <Block minHeight={700} title={t('progress')}>
-          <VacancyProgress
-            user={user}
-            grades={
-              data.grades.filter(({ id }) =>
-                vacancyProgress.gradesIds.includes(id),
-              ) || []
-            }
-          />
-        </Block>
-        <Stack gap={gap}>
-          <Block title={t('metrics')}>
-            <MetricsPlot />
+      <Grid container spacing={gap}>
+        <Grid item xs={4}>
+          <Block minHeight={700} title={t('progress')}>
+            <VacancyProgress
+              user={user}
+              grades={
+                data.grades.filter(({ id }) =>
+                  vacancyProgress.gradesIds?.includes(id),
+                ) || []
+              }
+            />
           </Block>
-          <Block title={t('info')}>
-            <UserInfo user={user} />
-          </Block>
-        </Stack>
-      </Stack>
+        </Grid>
+        <Grid item xs={8}>
+          <Stack gap={gap}>
+            <Block title={t('metrics')}>
+              <MetricsPlot />
+            </Block>
+            <Block title={t('info')}>
+              <UserInfo user={user} />
+            </Block>
+          </Stack>
+        </Grid>
+      </Grid>
     </>
   )
 }

@@ -37,7 +37,7 @@ export const UserPage: React.FC = () => {
               user={user}
               grades={
                 data.grades.filter(({ id }) =>
-                  vacancyProgress.gradesIds?.includes(id),
+                  vacancyProgress.gradeIds?.includes(id),
                 ) || []
               }
             />

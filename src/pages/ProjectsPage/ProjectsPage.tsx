@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Grid } from '@mui/material'
+import { Grid, List } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 import { Block } from '@/components/Block'
 import { PageTitle } from '@/components/PageTitle'
+import { MainOngoingProjects } from '@/pages/MainPage/MainOngoingProjects'
 import { ProjectCreatingForm } from '@/pages/ProjectsPage/ProjectCreatingForm'
 
 export const ProjectsPage: React.FC = () => {
@@ -23,7 +24,9 @@ export const ProjectsPage: React.FC = () => {
           </Block>
         </Grid>
         <Grid item xs={7}>
-          <Block>{t('onGoingProjects')}</Block>
+          <Block title={t('onGoingProjects') as any}>
+            <MainOngoingProjects showAll />
+          </Block>
         </Grid>
       </Grid>
     </>

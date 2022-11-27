@@ -10,6 +10,21 @@ export const theme = responsiveFontSizes(
       },
     },
     components: {
+      MuiDialogContent: {
+        styleOverrides: {
+          root: {
+            minWidth: 400,
+          },
+        },
+      },
+      MuiDialogTitle: {
+        styleOverrides: {
+          root: {
+            fontWeight: 700,
+            mb: 2,
+          },
+        },
+      },
       MuiCssBaseline: {
         styleOverrides: {
           body: {

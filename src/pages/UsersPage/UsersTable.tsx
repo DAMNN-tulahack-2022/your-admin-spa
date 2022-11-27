@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { DialogButton } from '@/components/DialogButton'
 import { useData } from '@/hooks'
+import { UserVacancyField } from '@/pages/UsersPage/UserVacancyField'
 import {
   Endpoints,
   GET_NAV_LINK,
@@ -31,7 +32,7 @@ export const UsersTable: React.FC = () => {
   const { t } = useTranslation()
   const navige = useNavigate()
   const getGithubProfileUrl = MAP_ENDPOINT_TO_GET_URL[Endpoints.GithubProfile]
-  const { users } = useData()
+  const data = useData()
 
   return (
     <TableContainer component={Box} sx={{ height: '80vh' }}>
@@ -44,7 +45,7 @@ export const UsersTable: React.FC = () => {
               </Stack>
             </TableCell>
             <TableCell>{t('FIO')}</TableCell>
-            <TableCell>{t('grade')}</TableCell>
+            <TableCell>{t('experience')}</TableCell>
             <TableCell>{t('role')}</TableCell>
             <TableCell>{t('vacancy')}</TableCell>
             <TableCell></TableCell>
@@ -52,7 +53,7 @@ export const UsersTable: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map(user => (
+          {data.users.map(user => (
             <TableRow key={`${user.id}-${user.login}-${user.lastName}`}>
               <TableCell>
                 <Link
@@ -66,7 +67,9 @@ export const UsersTable: React.FC = () => {
               <TableCell>{`${user.lastName} ${user.firstName[0]} ${user.middleName[0]}`}</TableCell>
               <TableCell>{user.totalExperience}</TableCell>
               <TableCell>{user.role}</TableCell>
-              <TableCell>{user.firstName}</TableCell>
+              <TableCell>
+                <UserVacancyField userId={user.id} />
+              </TableCell>
               <TableCell>
                 <DialogButton
                   title={t('deleteUser')}

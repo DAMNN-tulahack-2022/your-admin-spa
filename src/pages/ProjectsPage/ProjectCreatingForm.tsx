@@ -9,15 +9,27 @@ import { AutocompleteField, TextField } from '@/components/Fields'
 import { UsersAutocompleteField } from '@/components/UsersAutocompleteField'
 import { useAxios, useData } from '@/hooks'
 import { UserRole } from '@/types/constants'
+import { getMaxId } from '@/utils'
 
 export const ProjectCreatingForm: React.FC = () => {
   const axios = useAxios()
   const queryClient = useQueryClient()
   const { t } = useTranslation()
-  const { skills } = useData()
+  const data = useData()
 
   const { mutate } = useMutation({
-    mutationFn: (project: any) => axios.post('/data/projects/add', project),
+    mutationFn: (project: any) => {
+      const { teamLead, users, label, ...baseProj } = project
+      return axios.post('/data/projects/add', {
+        ...baseProj,
+        id: getMaxId('projects', data) + 1,
+        teamleadId: project.teamLead.id,
+        skillsIds: project.skillsIds.map(({ id }: any) => id),
+        userIds: project.users.map(({ id }: any) => id),
+        experience: Number(project.experience),
+        title: label,
+      })
+    },
     onSuccess: newProject => {
       queryClient.setQueryData(['data'], (data: any) => ({
         ...data,
@@ -41,7 +53,7 @@ export const ProjectCreatingForm: React.FC = () => {
             multiple
             name="skillsIds"
             label={t('skills')}
-            options={skills}
+            options={data.skills}
           />
           <UsersAutocompleteField
             multiple

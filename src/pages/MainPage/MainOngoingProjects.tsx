@@ -16,11 +16,15 @@ import { User } from '@/types'
 import { GET_NAV_LINK } from '@/types/constants'
 import { getGradeByUser } from '@/utils'
 
-export const MainOngoingProjects: React.FC = () => {
+interface Props {
+  showAll?: boolean
+}
+
+export const MainOngoingProjects: React.FC<Props> = ({ showAll }) => {
   const navigate = useNavigate()
   const data = useData()
   const ongoing = data.projects.filter((project: any) => !project?.completed)
-  const mainOngoing = ongoing.slice(0, 3)
+  const mainOngoing = showAll ? ongoing : ongoing.slice(0, 3)
 
   return (
     <List>

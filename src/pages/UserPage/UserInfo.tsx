@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { Chip, Link, ListItem, Stack, Typography } from '@mui/material'
+import { Box, Chip, Link, ListItem, Stack, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-import { Block } from '@/components/Block'
 import { useData } from '@/hooks'
 import { Children, User } from '@/types'
 import { Endpoints, MAP_ENDPOINT_TO_GET_URL } from '@/types/constants'
@@ -38,7 +37,7 @@ export const UserInfo: React.FC<Props> = ({ user }) => {
   const { t } = useTranslation()
   const getGithubProfileUrl = MAP_ENDPOINT_TO_GET_URL[Endpoints.GithubProfile]
   return (
-    <Block sx={{ flexGrow: 1 }}>
+    <Box>
       <Row
         label={t('FIO')}
         renderValue={() => (
@@ -86,6 +85,6 @@ export const UserInfo: React.FC<Props> = ({ user }) => {
         label={t('experience')}
         renderValue={() => <Typography>{user.totalExperience}</Typography>}
       />
-    </Block>
+    </Box>
   )
 }

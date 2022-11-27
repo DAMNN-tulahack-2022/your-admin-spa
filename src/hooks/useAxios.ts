@@ -3,7 +3,7 @@ import Axios from 'axios'
 // http://193.43.147.117:8086/
 export const useAxios = () => {
   const axios = Axios.create({
-    baseURL: 'http://localhost:3004',
+    baseURL: 'http://193.43.147.117:8323/',
   })
 
   // axios.defaults.headers.common = {

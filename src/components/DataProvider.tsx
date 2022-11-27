@@ -19,7 +19,7 @@ export const DataProvider: React.FC<{ children: Children }> = ({
   const axios = useAxios()
   const queryResult = useQuery<Data, any, any, any>({
     queryKey: ['data'],
-    queryFn: () => axios.get<Data>('data').then(data => data),
+    queryFn: () => axios.get<Data>('/data/lib').then(data => data),
   })
   return (
     <DataContext.Provider

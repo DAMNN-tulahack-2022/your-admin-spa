@@ -31,7 +31,7 @@ export const UserPage: React.FC = () => {
         showback
       />
       <Stack direction="row" gap={gap}>
-        <Block minHeight={700}>
+        <Block minHeight={700} title={t('progress')}>
           <VacancyProgress
             user={user}
             grades={
@@ -42,8 +42,12 @@ export const UserPage: React.FC = () => {
           />
         </Block>
         <Stack gap={gap}>
-          <MetricsPlot />
-          <UserInfo user={user} />
+          <Block title={t('metrics')}>
+            <MetricsPlot />
+          </Block>
+          <Block title={t('info')}>
+            <UserInfo user={user} />
+          </Block>
         </Stack>
       </Stack>
     </>

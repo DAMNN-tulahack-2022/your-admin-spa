@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Box,
@@ -11,15 +11,14 @@ import {
   Stepper,
   Typography,
 } from '@mui/material'
-import { useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import arrayMutators from 'final-form-arrays'
 import { Form } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'
 import { useTranslation } from 'react-i18next'
 
 import { SelectField, TextField } from '@/components/Fields'
-import { Vacancy } from '@/types'
-import { getMaxId } from '@/utils'
+import { useAxios } from '@/hooks'
 
 interface Props {
   selectedVacancyId: number
@@ -29,33 +28,46 @@ export const VacanciesProgressCreationForm: React.FC<Props> = ({
   selectedVacancyId,
 }) => {
   const { t } = useTranslation()
+  const [length, setLength] = useState<any>(-1)
   const [activeStep, setActiveStep] = useState(-1)
+  const [gradesId, setGradesId] = useState<any>([])
   const queryClient = useQueryClient()
-
-  const onSubmit = (values: any) => {
-    queryClient.setQueryData(['data'], (data: any) => {
-      const selectedVacancy = data.vacancies.find(
-        ({ id }: any) => id === selectedVacancyId,
-      ) as Vacancy
-      const maxGradeId = getMaxId('grades', data)
-      const gradesWithId = values.grades.map((grade: any, idx: any) => ({
-        ...grade,
-        id: idx + maxGradeId + 1,
-      }))
-      return {
+  const axios = useAxios()
+  const { mutate: addGrade } = useMutation({
+    mutationFn: (grade: any) =>
+      axios.post('/data/grades/add', grade).then(response => response),
+    onSuccess: (newGrade: any) => {
+      setGradesId((prev: any) => [...prev, newGrade.id])
+      queryClient.setQueryData(['data'], (data: any) => ({
         ...data,
-        vacanciesProgresses: [
-          ...data.vacanciesProgresses,
-          {
-            id: getMaxId('vacanciesProgress', data),
-            vacancyId: selectedVacancy.id,
-            gradesIds: gradesWithId.map(({ id }: any) => id),
-          },
-        ],
-        grades: [...data.grades, ...gradesWithId],
-      }
-    })
+        grades: [...data.grades, newGrade],
+      }))
+    },
+  })
+  const { mutate: addVacancyProgress } = useMutation({
+    mutationFn: (vacancyProgress: any) =>
+      axios.post('/data/grade-progress/add', vacancyProgress),
+    onSuccess: newVacancyProgress => {
+      queryClient.setQueryData(['data'], (data: any) => ({
+        ...data,
+        vacanciesProgresses: [...data.vacanciesProgresses, newVacancyProgress],
+      }))
+    },
+  })
+
+  const onSubmit = async (values: any) => {
+    await Promise.all(values.grades.map(addGrade))
+    setLength(values.grades.length)
   }
+
+  useEffect(() => {
+    if (length === gradesId.length) {
+      addVacancyProgress({
+        vacancyId: selectedVacancyId,
+        gradesIds: gradesId,
+      })
+    }
+  }, [gradesId, selectedVacancyId, length])
 
   if (selectedVacancyId < 0) {
     return <Typography>{t('selectVacancy')}</Typography>

@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next'
 
 import { DialogButton } from '@/components/DialogButton'
 import { StepApprovalStatus } from '@/components/StepApprovalStatus'
-import { useData } from '@/hooks'
+import { useData, useSendToShackbar } from '@/hooks'
 import { Grade, User } from '@/types'
 import { getGradeByUser } from '@/utils'
 
@@ -32,6 +32,7 @@ export const VacancyProgress: React.FC<Props> = ({
   const { t } = useTranslation()
   const queryClient = useQueryClient()
   const experienceDelta = 50
+  const sendToSnackBar = useSendToShackbar()
 
   const data = useData()
   const currentGrade = getGradeByUser(user, data)
@@ -84,7 +85,15 @@ export const VacancyProgress: React.FC<Props> = ({
             <Typography>{grade.description}</Typography>
             {!viewonly && (
               <Stack direction="row" gap={1} mt={1.5}>
-                <Button onClick={updateExperience(-1)} variant="outlined">
+                <Button
+                  onClick={() => {
+                    sendToSnackBar({
+                      variant: 'error',
+                      message: 'Не удалось удалось изменить степ',
+                    })
+                  }}
+                  variant="outlined"
+                >
                   {t('back')}
                 </Button>
                 {grade?.needsApproval ? (
@@ -97,7 +106,12 @@ export const VacancyProgress: React.FC<Props> = ({
                       <Button
                         variant="outlined"
                         color="error"
-                        onClick={updateExperience(1)}
+                        onClick={() => {
+                          sendToSnackBar({
+                            variant: 'error',
+                            message: 'Не удалось удалось изменить степ',
+                          })
+                        }}
                       >
                         {t('skip')}
                       </Button>
@@ -109,7 +123,15 @@ export const VacancyProgress: React.FC<Props> = ({
                     )}
                   />
                 ) : (
-                  <Button variant="contained" onClick={updateExperience(1)}>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      sendToSnackBar({
+                        variant: 'error',
+                        message: 'Не удалось удалось изменить степ',
+                      })
+                    }}
+                  >
                     {t('next')}
                   </Button>
                 )}

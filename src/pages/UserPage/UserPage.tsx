@@ -26,7 +26,7 @@ export const UserPage: React.FC = () => {
   return (
     <>
       <PageTitle
-        title={t('userPage') + `${user.id}`}
+        title={t('userPage') + `${user?.id}`}
         subtitle={t('metricsAndInfoAboutSelectedUser')}
       />
       <Grid container spacing={gap}>

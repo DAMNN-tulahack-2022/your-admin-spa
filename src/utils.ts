@@ -25,7 +25,7 @@ export const getGradeByUser = (user: User, data: Data): Grade => {
 }
 
 export const getVacancyByUser = (user: User, data: Data): Vacancy => {
-  return data.vacancies.find(({ id }) => user.vacancyId === id) as Vacancy
+  return data.vacancies.find(({ id }) => user?.vacancyId === id) as Vacancy
 }
 
 export const getVacancyProgressByVacancy = (

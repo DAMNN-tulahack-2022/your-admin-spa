@@ -6,7 +6,7 @@ const DEV_API = 'http://localhost:3004/'
 // http://193.43.147.117:8086/
 export const useAxios = () => {
   const axios = Axios.create({
-    baseURL: DEV_API,
+    baseURL: API,
   })
 
   // axios.defaults.headers.common = {

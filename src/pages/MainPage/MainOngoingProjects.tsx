@@ -7,7 +7,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Stack,
   Typography,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -27,9 +26,9 @@ export const MainOngoingProjects: React.FC = () => {
     <List>
       {mainOngoing.map(ongoingProject => {
         const teamLead = data.users.find(
-          ({ id }) => ongoingProject.teamLeadId === id,
+          ({ id }) => ongoingProject.teamleadId === id,
         ) as User
-        return (
+        return teamLead ? (
           <ListItem
             key={ongoingProject.title}
             sx={{
@@ -52,7 +51,7 @@ export const MainOngoingProjects: React.FC = () => {
                   <ListItemIcon>
                     <Avatar
                       alt="team lead"
-                      src={teamLead.avatarUrl}
+                      src={teamLead?.avatarUrl}
                       sx={{ width: 36, height: 36 }}
                     />
                   </ListItemIcon>
@@ -64,7 +63,7 @@ export const MainOngoingProjects: React.FC = () => {
               }
             />
           </ListItem>
-        )
+        ) : null
       })}
     </List>
   )

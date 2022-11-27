@@ -22,7 +22,7 @@ export const DataProvider: React.FC<{ children: Children }> = ({
   const axios = useAxios()
   const queryResult = useQuery<Data, any, any, any>({
     queryKey: ['data'],
-    queryFn: () => axios.get<Data>(DEV_API).then(data => data),
+    queryFn: () => axios.get<Data>(API).then(data => data),
   })
   console.log(queryResult)
   return (

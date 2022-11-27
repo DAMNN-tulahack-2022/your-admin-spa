@@ -1,6 +1,5 @@
 import React from 'react'
 
-import PrivacyTipOutlinedIcon from '@mui/icons-material/PrivacyTipOutlined'
 import {
   Button,
   Stack,
@@ -39,7 +38,7 @@ export const VacancyProgress: React.FC<Props> = ({
   const currentVacancyProgress =
     data.vacanciesProgresses
       .find(({ vacancyId }: any) => vacancyId === user.vacancyId)
-      ?.gradesIds.findIndex((gradeId: any) => currentGrade.id === gradeId) || 0
+      ?.gradeIds.findIndex((gradeId: any) => currentGrade.id === gradeId) || 0
 
   const updateExperience = (coef: number) => () => {
     queryClient.setQueryData(['data'], (data: any) => {

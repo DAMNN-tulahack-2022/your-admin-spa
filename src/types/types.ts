@@ -47,14 +47,14 @@ export interface Project {
   title: string
   id: number
   desciption: string
-  teamLeadId: number
+  teamleadId: number
   skillsIds: number[]
   usersIds: number[]
   experience: number
 }
 
 export interface VacancyProgress {
-  gradesIds: number[]
+  gradeIds: number[]
   vacancyId: number
   id: number
 }

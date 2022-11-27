@@ -55,9 +55,9 @@ const plotdata = [
 export const VacanciesPlot: React.FC = () => {
   const data = useData()
   const { t } = useTranslation()
-  const usersCurrentGrades = data.users.map(
-    user => getGradeByUser(user, data)?.label?.toLowerCase() || '',
-  )
+  // const usersCurrentGrades = data.users.map(
+  //   user => getGradeByUser(user, data)?.label?.toLowerCase() || '',
+  // )
 
   const vacanciesData = [
     {
